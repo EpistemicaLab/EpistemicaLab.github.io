@@ -4,50 +4,403 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EpistemicaLab</title>
-  <meta name="description" content="EpistemicaLab -- independent research on AI epistemic foundations.">
+  <meta name="description" content="Independent research lab. Epistemology engineering for the AI era.">
+  <link rel="icon" href="data:,">
   <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-           max-width: 720px; margin: 4rem auto; padding: 0 1.5rem; line-height: 1.65;
-           color: #2c3e50; background: #fdfdfd; }
-    h1 { font-size: 2.4rem; margin-bottom: 0.3rem; letter-spacing: -0.02em; }
-    .tagline { color: #7f8c8d; font-style: italic; margin-bottom: 2.5rem; font-size: 1.05rem; }
-    h2 { font-size: 1.25rem; margin-top: 2.5rem; border-bottom: 1px solid #ecf0f1;
-         padding-bottom: 0.3rem; font-weight: 600; letter-spacing: -0.01em; }
-    a { color: #2980b9; text-decoration: none; border-bottom: 1px solid transparent; }
-    a:hover { border-bottom-color: #2980b9; }
-    .paper { margin: 1.2rem 0; }
-    .paper-title { font-weight: 600; line-height: 1.4; }
-    .paper-meta { color: #7f8c8d; font-size: 0.92rem; margin-top: 0.2rem; }
-    footer { margin-top: 4rem; padding-top: 1rem; border-top: 1px solid #ecf0f1;
-             color: #95a5a6; font-size: 0.85rem; }
-    code { background: #f4f4f4; padding: 0.1rem 0.35rem; border-radius: 3px;
-           font-size: 0.92em; }
+    :root {
+      --ink: #0a0a0a;
+      --ink-2: #2a2a2a;
+      --mute: #6b6b6b;
+      --rule: #e6e6e6;
+      --paper: #fafafa;
+      --code-bg: #f3f3f3;
+      --accent: #0a0a0a;
+      --mono: ui-monospace, "SF Mono", "JetBrains Mono", "Menlo", "Consolas", monospace;
+      --sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: var(--sans);
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.55;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+    /* Top bar */
+    nav.top {
+      padding: 28px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+    }
+    nav.top .brand {
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    nav.top a.dim {
+      color: var(--mute);
+      text-decoration: none;
+      margin-left: 22px;
+    }
+    nav.top a.dim:hover { color: var(--ink); }
+
+    /* Hero */
+    header.hero { padding: 96px 0 72px; }
+    header.hero h1 {
+      font-size: clamp(40px, 7vw, 72px);
+      line-height: 1.02;
+      letter-spacing: -0.035em;
+      font-weight: 800;
+      margin: 0 0 24px;
+      color: var(--ink);
+    }
+    header.hero .sub {
+      font-size: 18px;
+      color: var(--ink-2);
+      max-width: 560px;
+      margin: 0 0 32px;
+      line-height: 1.55;
+    }
+    header.hero .sub b { font-weight: 700; color: var(--ink); }
+
+    /* CTA buttons */
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 18px;
+      background: var(--ink);
+      color: var(--paper);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 999px;
+      letter-spacing: -0.005em;
+      transition: transform 0.08s ease;
+    }
+    .cta:hover { transform: translateY(-1px); }
+    .cta.ghost {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--ink);
+      margin-left: 10px;
+    }
+
+    /* Section heading */
+    section { padding: 56px 0; border-top: 1px solid var(--rule); }
+    section h2 {
+      font-size: 28px;
+      letter-spacing: -0.02em;
+      font-weight: 700;
+      margin: 0 0 24px;
+      line-height: 1.2;
+    }
+    section p {
+      color: var(--ink-2);
+      font-size: 16px;
+      margin: 0 0 16px;
+      max-width: 620px;
+    }
+    section p.lead {
+      font-size: 18px;
+      color: var(--ink);
+      margin-bottom: 24px;
+    }
+
+    /* Numbered list, impeccable style */
+    ol.numbered {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      counter-reset: step;
+    }
+    ol.numbered > li {
+      counter-increment: step;
+      padding: 24px 0 24px 64px;
+      border-top: 1px dashed var(--rule);
+      position: relative;
+    }
+    ol.numbered > li:first-child { border-top: none; padding-top: 8px; }
+    ol.numbered > li::before {
+      content: counter(step, decimal-leading-zero);
+      position: absolute;
+      left: 0;
+      top: 24px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--mute);
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+    ol.numbered > li:first-child::before { top: 8px; }
+    ol.numbered .head {
+      font-weight: 700;
+      font-size: 17px;
+      letter-spacing: -0.01em;
+      margin-bottom: 6px;
+      color: var(--ink);
+    }
+    ol.numbered .body {
+      color: var(--ink-2);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+    ol.numbered code { font-size: 13px; }
+
+    /* Inline code */
+    code {
+      font-family: var(--mono);
+      font-size: 0.92em;
+      background: var(--code-bg);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--ink);
+    }
+
+    /* Block code (the thesis / formula) */
+    pre.thesis {
+      font-family: var(--mono);
+      font-size: 14px;
+      background: var(--code-bg);
+      color: var(--ink);
+      padding: 20px 22px;
+      border-radius: 10px;
+      line-height: 1.7;
+      overflow-x: auto;
+      margin: 0 0 20px;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    pre.thesis .c { color: var(--mute); }
+    pre.thesis .k { color: var(--ink); font-weight: 700; }
+
+    /* Two-column grid for "What this lab is / isn't" */
+    .grid2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 8px;
+    }
+    .grid2 .card {
+      padding: 18px 20px;
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      background: #fff;
+    }
+    .grid2 .card .label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--mute);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .grid2 .card.is .label { color: var(--ink); }
+    .grid2 .card ul { padding-left: 16px; margin: 0; color: var(--ink-2); font-size: 14.5px; line-height: 1.7; }
+    .grid2 .card li::marker { color: var(--mute); }
+
+    /* Footer */
+    footer.foot {
+      padding: 48px 0 64px;
+      border-top: 1px solid var(--rule);
+      color: var(--mute);
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    footer.foot a {
+      color: var(--mute);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+    }
+    footer.foot a:hover { color: var(--ink); border-bottom-color: var(--ink); }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+      header.hero { padding: 64px 0 48px; }
+      .grid2 { grid-template-columns: 1fr; }
+      .cta.ghost { margin-left: 0; margin-top: 10px; display: inline-flex; }
+    }
+
+    /* Reduce motion */
+    @media (prefers-reduced-motion: reduce) {
+      .cta:hover { transform: none; }
+    }
   </style>
 </head>
 <body>
-  <h1>EpistemicaLab</h1>
-  <p class="tagline">Independent research on AI epistemic foundations.</p>
+  <div class="wrap">
 
-  <h2>Research</h2>
+    <nav class="top">
+      <a class="brand" href="/">EpistemicaLab</a>
+      <div>
+        <a class="dim" href="https://github.com/EpistemicaLab">GitHub</a>
+        <a class="dim" href="mailto:dengyouwang@gmail.com">Contact</a>
+      </div>
+    </nav>
 
-  <div class="paper">
-    <div class="paper-title">A Dual-Pathway Theory of Physical World Models: Why Symbolic Laws Need Intervention, and Why Cross-Pathway Consistency is the Mechanism (Not the Loss)</div>
-    <div class="paper-meta">arXiv preprint, 2026 &middot; <a href="https://github.com/EpistemicaLab/dual-pathway-pwm">code</a></div>
+    <header class="hero">
+      <h1>The missing epistemology<br>for the AI era.</h1>
+      <p class="sub">
+        EpistemicaLab is an independent research lab.
+        <b>We do not build AI tools.</b>
+        We engineer the methods by which knowledge is produced
+        once frontier models do most of the writing,
+        most of the searching, and most of the reading.
+      </p>
+      <a class="cta" href="https://github.com/EpistemicaLab">
+        See the code &nbsp;<span style="font-family:var(--mono);">→</span>
+      </a>
+      <a class="cta ghost" href="#thesis">Read the thesis</a>
+    </header>
+
+    <section id="thesis">
+      <h2>Thesis.</h2>
+      <p class="lead">
+        Research capability is not a single number. It is a product of
+        five engineerable factors. The lab's leverage lives in two of them.
+      </p>
+      <pre class="thesis"><span class="c"># Lab thesis</span>
+research_capability =
+    <span class="k">question_quality</span>     <span class="c"># what we ask</span>
+  × <span class="k">generator</span>            <span class="c"># frontier model — not our edge</span>
+  × <span class="k">verifier</span>             <span class="c"># what we trust — our edge</span>
+  × iteration_speed
+  × compute</pre>
+      <p>
+        We do not compete with frontier labs on <code>generator</code>.
+        We compete on <code>question_quality</code> and <code>verifier</code>,
+        because those are the layers that AI cannot self-improve out of, yet.
+        Our output unit is the <b>claim</b>, not the paper.
+      </p>
+    </section>
+
+    <section>
+      <h2>Programme.</h2>
+      <p class="lead">
+        Three layers of questions. Seven engineering projects.
+        One active build.
+      </p>
+
+      <ol class="numbered">
+        <li>
+          <div class="head">Method &mdash; how research itself becomes computable</div>
+          <div class="body">
+            What is the smallest unit of research output? How does the binding
+            constraint shift between generator quality, verifier coverage,
+            and iteration speed? Is recursive self-improvement realistic, or
+            does it stall on verifier saturation?
+          </div>
+        </li>
+        <li>
+          <div class="head">Knowledge &mdash; what survives once AI floods the corpus</div>
+          <div class="body">
+            What is the trajectory of AI-generated content on arXiv?
+            When does peer-review capacity collapse?
+            What provenance signals can a reader still trust?
+          </div>
+        </li>
+        <li>
+          <div class="head">Risk &mdash; the failure modes of an AI-mediated science</div>
+          <div class="body">
+            Monoculture (one frontier model becomes the field's blind spot).
+            Barbell collapse (AI commodifies the middle of research careers).
+            Training-loop contamination (AI papers train next-gen LLMs).
+            Cognitive offloading. Coordination failure.
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>What this lab is, and is not.</h2>
+      <div class="grid2">
+        <div class="card is">
+          <div class="label">Is</div>
+          <ul>
+            <li>Method-first &mdash; verifier engineering, not model training</li>
+            <li>Claim-level output, not paper-count output</li>
+            <li>Cross-LLM audited &mdash; every load-bearing claim audited by ≥3 model families</li>
+            <li>Open-source code, peer-reviewed papers</li>
+            <li>Independent &mdash; no institutional steering</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="label">Is not</div>
+          <ul>
+            <li>An AI tool company</li>
+            <li>An LLM wrapper</li>
+            <li>A coding assistant</li>
+            <li>A frontier capability lab</li>
+            <li>A vibe-coded landing page</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Operating principles.</h2>
+      <ol class="numbered">
+        <li>
+          <div class="head">Build the verifier before the generator.</div>
+          <div class="body">
+            A claim with a fast, cheap verifier compounds.
+            A claim without one rots into vibes-research.
+          </div>
+        </li>
+        <li>
+          <div class="head">No single-LLM audits on load-bearing claims.</div>
+          <div class="body">
+            One model has positive bias toward its own work.
+            Three families across reasoning depths is the floor.
+          </div>
+        </li>
+        <li>
+          <div class="head">Closed-set benchmarks are gameable.</div>
+          <div class="body">
+            Generative tasks with hold-out sets are not.
+            We build the second kind.
+          </div>
+        </li>
+        <li>
+          <div class="head">If the answer changes nothing, the question is wrong.</div>
+          <div class="body">
+            Zero-leverage research is the most expensive kind.
+            We audit every project for action-relevance before it ships.
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Papers.</h2>
+      <p>
+        Coming soon &mdash; preprints under final review.
+        Code releases are <a style="color:var(--ink); border-bottom: 1px solid var(--ink);" href="https://github.com/EpistemicaLab">on GitHub</a> already.
+      </p>
+    </section>
+
+    <footer class="foot">
+      <div>
+        EpistemicaLab &middot; Independent research.
+      </div>
+      <div>
+        <a href="https://github.com/EpistemicaLab">github.com/EpistemicaLab</a>
+        &nbsp;&middot;&nbsp;
+        <a href="mailto:dengyouwang@gmail.com">dengyouwang@gmail.com</a>
+      </div>
+    </footer>
+
   </div>
-
-  <div class="paper">
-    <div class="paper-title">Goal-Compiled Autopilot: Verifiable Anti-Fabrication Firewall for Long-Horizon LLM Agents</div>
-    <div class="paper-meta">Preprint, 2026 &middot; <a href="https://github.com/EpistemicaLab/goal-compiled-autopilot">code</a></div>
-  </div>
-
-  <h2>Code</h2>
-  <p><a href="https://github.com/EpistemicaLab">github.com/EpistemicaLab</a></p>
-
-  <h2>Contact</h2>
-  <p><a href="mailto:dengyouwang@gmail.com">dengyouwang@gmail.com</a></p>
-
-  <footer>
-    EpistemicaLab &middot; Independent research lab.
-  </footer>
 </body>
 </html>
