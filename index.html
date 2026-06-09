@@ -17,6 +17,7 @@
       --accent: #0a0a0a;
       --mono: ui-monospace, "SF Mono", "JetBrains Mono", "Menlo", "Consolas", monospace;
       --sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      --serif: "Iowan Old Style", "Source Serif Pro", "Charter", "Sitka Text", Cambria, ui-serif, Georgia, "Times New Roman", serif;
     }
     * { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
@@ -55,13 +56,20 @@
     /* Hero */
     header.hero { padding: 112px 0 88px; }
     header.hero h1 {
-      font-size: clamp(44px, 8vw, 96px);
-      line-height: 1.0;
-      letter-spacing: -0.04em;
+      font-size: clamp(40px, 7.2vw, 84px);
+      line-height: 1.05;
+      letter-spacing: -0.038em;
       font-weight: 800;
-      margin: 0 0 28px;
+      margin: 0 0 32px;
       color: var(--ink);
-      max-width: 920px;
+      max-width: 1000px;
+    }
+    header.hero h1 em {
+      font-style: italic;
+      font-weight: 500;
+      font-family: var(--serif);
+      letter-spacing: -0.015em;
+      /* serif italics need a tiny optical lift to align with bold sans baseline */
     }
     header.hero .sub {
       font-size: 19px;
@@ -258,7 +266,7 @@
     </nav>
 
     <header class="hero">
-      <h1>The missing epistemology<br>for the AI era.</h1>
+      <h1>The missing <em>epistemology</em><br>for the AI era.</h1>
       <p class="sub">
         EpistemicaLab is an independent research lab.
         <b>We do not build AI tools.</b>
