@@ -237,24 +237,18 @@
       </div>
     </nav>
 
-    <a class="featured" href="https://github.com/EpistemicaLab">
-      <span class="badge">NEW</span>
-      <span class="label">Two preprints in final review &mdash; arXiv links to follow.</span>
-      <span class="arrow">→</span>
-    </a>
-
     <header class="hero">
       <h1>EpistemicaLab is an independent research lab studying the <em>epistemology</em> of an AI-mediated science.</h1>
 
       <p>Frontier models now do most of the writing, most of the searching, and an increasing share of the reading. The bottleneck on scientific progress is shifting from generator capability to verifier capability &mdash; from <em>what we can produce</em> to <em>what we can trust</em>.</p>
 
-      <p>We do not build frontier models. We do not build coding assistants. We build the methodology &mdash; the verifiers, audit protocols, claim formats, and provenance standards &mdash; that lets a small lab do credible research while frontier capability accelerates around it.</p>
+      <p>We do not build frontier models. We do not build coding assistants. We build the methodology &mdash; the verifiers, audit protocols, claim formats, and provenance standards &mdash; that lets credible research keep pace as frontier capability accelerates.</p>
     </header>
 
     <section>
       <h2>Verifiers are the binding constraint.</h2>
       <p><em>Capability is bounded by what we can verify.</em> The history of science is the history of verifier engineering &mdash; the microscope, the statistical test, peer review, the formal proof. AI accelerates the generator side dramatically, but verifiers are what compound. A claim with a fast, cheap, model-independent verifier becomes a building block. A claim without one rots into vibes-research, regardless of how confidently a frontier model produced it.</p>
-      <p>Our research focuses on the verifier engineering that turns unbounded LLM output into bounded research output: cross-family audit protocols, paired-bootstrap intervals, oracle-hashing, formal proof checkers, and identifiability-error metrics. We treat <code>verifier_quality</code> as the load-bearing factor in the equation <code>research_capability = question_quality × generator × verifier × iteration_speed × compute</code>, because it is the layer where a small lab can be world-competitive without owning a training cluster.</p>
+      <p>Our research focuses on the verifier engineering that turns unbounded LLM output into bounded research output: cross-family audit protocols, paired-bootstrap intervals, oracle-hashing, formal proof checkers, and identifiability-error metrics. We treat <code>verifier_quality</code> as the load-bearing factor in the equation <code>research_capability = question_quality × generator × verifier × iteration_speed × compute</code>, because verifier quality, more than generator quality, decides whether a research output can be trusted.</p>
     </section>
 
     <section>
@@ -264,18 +258,18 @@
 
     <section>
       <h2>No load-bearing claim survives a single model.</h2>
-      <p><em>Cross-family auditing is non-negotiable.</em> When one frontier model becomes the dominant generator and the dominant verifier, the field's blind spots become its consensus. We have measured this directly: the same eighteen research items, audited by five LLMs from four model families, produced full agreement on only 44% of items. Reasoning-tuned models found errors that less-tuned models missed. Anthropic-family and DeepSeek-family models clustered together; Zhipu and MiniMax clustered together; OpenAI-family stood apart.</p>
-      <p>Our protocols require any load-bearing claim to be audited across at least three model families spanning different reasoning depths. We treat single-model evaluation as roughly equivalent to a single-arm clinical trial: suggestive, not load-bearing.</p>
+      <p><em>Cross-family auditing is non-negotiable.</em> When one frontier model becomes the dominant generator and the dominant verifier, the field's blind spots become its consensus. The structure of disagreement matters: models from the same training culture cluster together, models tuned for deeper reasoning find errors lighter models miss, and switching to a different model family changes the verdict more often than scaling the same model up.</p>
+      <p>We treat any load-bearing claim as untrusted until it has been audited across at least three model families spanning different reasoning depths. A single-model evaluation is roughly the epistemic weight of a single-arm clinical trial: suggestive, not conclusive.</p>
     </section>
 
     <section>
       <h2>The lab studies its own methodology.</h2>
-      <p><em>Method must be its own object of study.</em> A lab that uses AI to do research must also study how AI changes research, or it inherits the failure modes silently. We track six in particular: monoculture (a few frontier models become the field's blind spot), barbell collapse (AI commodifies the middle of research careers), training-loop contamination (AI papers train next-generation models), cognitive offloading, attention-tragedy of the commons, and corpus poisoning. Each is treated as a research question with operationalised sub-questions and verifiable signals, not as a discussion topic.</p>
+      <p><em>Method must be its own object of study.</em> A lab that uses AI to do research must also study how AI changes research, or it inherits the failure modes silently. Several are visible already: monoculture (a few frontier models become the field's blind spot), barbell collapse (AI commodifies the middle of research careers), training-loop contamination (AI papers train next-generation models), cognitive offloading, attention-tragedy of the commons, and corpus poisoning. Each is treated as a research question with operationalised sub-questions and verifiable signals, not as a discussion topic.</p>
     </section>
 
     <section>
       <h2>Open work.</h2>
-      <p>We share questions, verifiers, and negative results. Code is on <a class="inline" href="https://github.com/EpistemicaLab">GitHub</a>; papers will appear on arXiv as they pass review. Notes that are not ready for either &mdash; audit logs, ablation experiments, the full chain of reasoning behind a claim &mdash; live in the lab notebook, which we narrate publicly even when the source remains private. We believe that researchers who can read each other's verifiers, not only each other's papers, build a faster and more honest science.</p>
+      <p>We share questions, verifiers, and negative results. Code is on <a class="inline" href="https://github.com/EpistemicaLab">GitHub</a>; papers will appear on arXiv as they pass review. We believe that researchers who can read each other's verifiers, not only each other's papers, build a faster and more honest science.</p>
     </section>
 
     <footer class="foot">
