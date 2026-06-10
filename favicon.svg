@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="64" height="64">
+  <title>EpistemicaLab</title>
+  <g fill="#0a0a0a">
+    <rect x="20" y="14" width="14" height="72"/>
+    <rect x="20" y="14" width="60" height="14"/>
+    <rect x="20" y="40" width="14" height="20"/>
+    <rect x="43" y="40" width="14" height="20"/>
+    <rect x="66" y="40" width="14" height="20"/>
+    <rect x="20" y="72" width="60" height="14"/>
+  </g>
+</svg>
