@@ -183,6 +183,43 @@
       color: var(--ink);
     }
 
+    /* Papers list — minimal, one entry per row */
+    .papers { margin: 4px 0 0; }
+    .paper {
+      display: block;
+      padding: 20px 0;
+      border-top: 1px solid var(--rule);
+      text-decoration: none;
+      color: inherit;
+    }
+    .paper:first-child { border-top: none; }
+    .paper .ptitle {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      line-height: 1.4;
+    }
+    .paper:hover .ptitle {
+      text-decoration: underline;
+      text-decoration-color: var(--ink);
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+    }
+    .paper .pdesc {
+      font-size: 15.5px;
+      color: var(--ink-2);
+      margin: 7px 0 0;
+      line-height: 1.6;
+    }
+    .paper .pmeta {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--mute);
+      margin: 9px 0 0;
+      letter-spacing: 0.01em;
+    }
+
     /* Footer */
     footer.foot {
       margin-top: 80px;
@@ -233,9 +270,16 @@
       </a>
       <div class="links">
         <a href="https://github.com/EpistemicaLab">Code</a>
+        <a href="#papers">Papers</a>
         <a href="mailto:dengyouwang@gmail.com">Contact</a>
       </div>
     </nav>
+
+    <a class="featured" href="https://arxiv.org/abs/2606.11688">
+      <span class="badge">NEW</span>
+      <span class="label">Goal-Autopilot: a verifiable anti-fabrication firewall for unattended long-horizon agents</span>
+      <span class="arrow">&rarr;</span>
+    </a>
 
     <header class="hero">
       <h1>EpistemicaLab studies the <em>epistemology</em> of an AI-mediated science.</h1>
@@ -267,9 +311,34 @@
       <p><em>Method must be its own object of study.</em> A lab that uses AI to do research must also study how AI changes research, or it inherits the failure modes silently. Several are visible already: monoculture (a few frontier models become the field's blind spot), barbell collapse (AI commodifies the middle of research careers), training-loop contamination (AI papers train next-generation models), cognitive offloading, attention-tragedy of the commons, and corpus poisoning. Each is treated as a research question with operationalised sub-questions and verifiable signals, not as a discussion topic.</p>
     </section>
 
+    <section id="papers">
+      <h2>Papers.</h2>
+      <div class="papers">
+
+        <a class="paper" href="https://arxiv.org/abs/2606.11688">
+          <div class="ptitle">Goal-Autopilot: A Verifiable Anti-Fabrication Firewall for Unattended Long-Horizon Agents</div>
+          <p class="pdesc">Treats honesty &mdash; bounding what an agent may claim at termination &mdash; as a first-class metric for unattended autonomy. An execution model that makes silent fabricated success structurally impossible, with a No-False-Success theorem whose only trust points are empirically measurable; the worst case degrades to an honest stall, never a fabricated success.</p>
+          <div class="pmeta">arXiv:2606.11688 &middot; cs.CL &middot; Jun 2026</div>
+        </a>
+
+        <a class="paper" href="https://arxiv.org/abs/2606.11712">
+          <div class="ptitle">Substrate Asymmetry in User-Side Memory: A Diagnostic Framework</div>
+          <p class="pdesc">User-side memory does not factor into a single "personalization" score: it splits into orthogonal axes &mdash; behavioral consistency, factual presence, factual absence &mdash; that no single substrate wins. Includes a diagnosed real-data negative, an alignment-tax replication, and a routing-as-classification finding.</p>
+          <div class="pmeta">arXiv:2606.11712 &middot; cs.CL &middot; Jun 2026</div>
+        </a>
+
+        <a class="paper" href="https://arxiv.org/abs/2605.29630">
+          <div class="ptitle">Entity-Collision: A Stratified Protocol for Attributing Retrieval Lift in Agent Memory</div>
+          <p class="pdesc">A system-agnostic protocol that pins the lexical retrieval floor by construction, so any lift over BM25 is attributable to the embedder rather than to uncontrolled entity overlap. Every reported confidence interval is reproducible byte-for-byte from the ingest stream.</p>
+          <div class="pmeta">arXiv:2605.29630 &middot; cs.CL / cs.IR &middot; May 2026</div>
+        </a>
+
+      </div>
+    </section>
+
     <section>
       <h2>Open work.</h2>
-      <p>We share questions, verifiers, and negative results. Code is on <a class="inline" href="https://github.com/EpistemicaLab">GitHub</a>; papers will appear on arXiv as they pass review. We believe that researchers who can read each other's verifiers, not only each other's papers, build a faster and more honest science.</p>
+      <p>We share questions, verifiers, and negative results. Papers are listed <a class="inline" href="#papers">above</a> and code is on <a class="inline" href="https://github.com/EpistemicaLab">GitHub</a>. We believe that researchers who can read each other's verifiers, not only each other's papers, build a faster and more honest science.</p>
     </section>
 
     <footer class="foot">
